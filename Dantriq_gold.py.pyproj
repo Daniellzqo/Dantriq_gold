@@ -5,7 +5,7 @@
     <ProjectGuid>3ff0b96c-d249-401c-b704-568e87785bc4</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>main.py</StartupFile>
+    <StartupFile>app.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,10 +23,20 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Backend\fetch_gold_price.py" />
+    <Compile Include="Backend\fetch_skup.py" />
     <Compile Include="app.py" />
-    <Compile Include="fetch_gold_price.py" />
-    <Compile Include="fetch_skup.py" />
-    <Compile Include="main.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Backend\" />
+    <Folder Include="Frontend\" />
+    <Folder Include="Frontend\static\" />
+    <Folder Include="Frontend\templates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Frontend\static\style.css" />
+    <Content Include="Frontend\templates\index.html" />
+    <Content Include="Frontend\templates\loading.html" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

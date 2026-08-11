@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>My Gold Portfolio</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="card">
+        <h1>💰 My Gold Portfolio</h1>
+        <div class="row">
+            <span class="label">Gold price</span>
+            <span class="value">{{ "%.2f"|format(price_pln_perg) }} PLN/g</span>
+        </div>
+        <div class="row">
+            <span class="label">Gold price</span>
+            <span class="value">{{ "%.2f"|format(price_usd) }} USD/oz</span>
+        </div>
+        <div class="row">
+            <span class="label">Bars value (buyback)</span>
+            <span class="value">{{ "%.2f"|format(suma_skupu) }} PLN</span>
+        </div>
+        <div class="result" style="background: {{ kolor }}22; border: 1px solid {{ kolor }};">
+            <div class="label">{{ znak }}</div>
+            <div class="amount" style="color: {{ kolor }};">
+                {{ "%+.2f"|format(zysk_strata) }} PLN
+            </div>
+        </div>
+    </div>
+    <p class="timestamp">Last updated: {{ fetch_time }}</p>
+</body>
+</html>
