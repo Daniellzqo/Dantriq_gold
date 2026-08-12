@@ -40,7 +40,7 @@ def update_cache():
 def background_updater():
     while True:
         update_cache()
-        time.sleep(150)
+        time.sleep(300)
 
 
 @app.get("/", response_class=HTMLResponse)

@@ -1,11 +1,26 @@
 import requests
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
+from playwright_stealth import Stealth
 
 def fetch(url):
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        page = browser.new_page()
+    with Stealth().use_sync(sync_playwright()) as p:
+        browser = p.chromium.launch(
+            headless=True,
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+            ],
+        )
+        page = browser.new_page(
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/124.0.0.0 Safari/537.36"
+            ),
+            viewport={"width": 1920, "height": 1080},
+        )
+
         page.goto(url)
         page.wait_for_timeout(3000)
         content = page.content()
@@ -21,7 +36,4 @@ def fetch(url):
 
     fetch_time = fetch_time1.text.split("na: ")[1].strip()
 
-    #print(fetch_time)
-    #print(price_pln_perg)
-    #print(price_usd)
     return price_pln_perg, price_usd, fetch_time
